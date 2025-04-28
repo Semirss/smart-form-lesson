@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">የቅጽ መተግበሪያ</string>
+    <string name="enter_name">ስም አስገባ</string>
+    <string name="select_date">ቀን ምረጥ</string>
+    <string name="pick_image">ምስል ምረጥ</string>
+    <string name="submit">አስገባ</string>
+    <string name="reset_form">ቅጽ ተሰርዟል</string>
+    <string name="please_fill_all_fields">እባክዎ ሁሉንም ቦታ ይሙሉ!</string>
+    <string name="delete">ሰርዝ</string>
+    <string name="edit">አስተካክል</string>
+</resources>
