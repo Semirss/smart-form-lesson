@@ -2,11 +2,13 @@
     <string name="app_name">JavaAssignm</string>
     <string name="pick_image">Pick Image</string>
     <string name="enter_name">Enter Name</string>
+    <string name="father_name">Father Name</string>
     <string name="select_date">Select Date</string>
     <string name="submit">Submit</string>
     <string name="reset_form">Reset Form</string>
     <string name="please_fill_all_fields">Please fill all fields!</string>
     <string name="delete">Delete</string>
     <string name="edit">Edit</string>
+    <string name="next">Next</string>
 
 </resources>

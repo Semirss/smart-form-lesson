@@ -4,12 +4,14 @@ import android.net.Uri;
 
 public class FormItem {
     private String name;
+    private String fname;
     private String date;
     private Uri imageUri;
 
 
-    public FormItem(String name, String date, Uri imageUri) {
+    public FormItem(String name, String fname, String date, Uri imageUri) {
         this.name = name;
+        this.fname = fname;
         this.date = date;
         this.imageUri = imageUri;
     }
@@ -17,6 +19,9 @@ public class FormItem {
 
     public String getName() {
         return name;
+    }
+    public String getFname(){
+        return fname;
     }
 
     public String getDate() {

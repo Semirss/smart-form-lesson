@@ -13,6 +13,7 @@ import com.example.javaassignm.databinding.ItemFormBinding;
 import java.util.List;
 
 public class FormAdapter extends ArrayAdapter<FormItem> {
+
     private Context context;
     private List<FormItem> formItemList;
 
@@ -38,6 +39,7 @@ public class FormAdapter extends ArrayAdapter<FormItem> {
         FormItem item = formItemList.get(position);
 
         binding.tvName.setText(item.getName());
+        binding.tvFname.setText(item.getName());
         binding.tvDate.setText(item.getDate());
         binding.imageView.setImageURI(item.getImageUri());
 

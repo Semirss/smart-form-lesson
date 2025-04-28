@@ -13,6 +13,9 @@
         android:theme="@style/Theme.JavaAssignm"
         tools:targetApi="31">
         <activity
+            android:name=".anotherActivity"
+            android:exported="false" />
+        <activity
             android:name=".ResultActivity"
             android:exported="false" />
         <activity

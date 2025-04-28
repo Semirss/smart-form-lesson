@@ -1,9 +1,11 @@
 package com.example.javaassignm;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.ContextMenu;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.DatePicker;
@@ -11,6 +13,9 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.Toast;
 import android.widget.Button;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import com.example.javaassignm.databinding.ActivityMainBinding;
 import android.net.Uri;
@@ -19,6 +24,7 @@ import android.app.DatePickerDialog;
 import android.widget.EditText;
 import android.widget.ToggleButton;
 
+import java.util.Calendar;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
@@ -35,10 +41,21 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.next.setOnClickListener(v->{
+            Intent i = new Intent(this, ResultActivity.class);
+            startActivity(i);
+
+        });
+
         toggleButton = findViewById(R.id.toggle_button);
         toggleButton.setChecked(Locale.getDefault().getLanguage().equals("am"));
 
         registerForContextMenu(binding.imageView);
+
+        Calendar calendar = Calendar.getInstance();
+        year = calendar.get(Calendar.YEAR);
+        month = calendar.get(Calendar.MONTH);
+        day = calendar.get(Calendar.DAY_OF_MONTH);
 
         binding.btnPickDate.setOnClickListener(v -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog(MainActivity.this,
@@ -55,12 +72,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.btnSubmit.setOnClickListener(v -> {
-            String name = binding.etName.getText().toString();
+            String name = binding.etname.getText().toString();
+            String fname = binding.etFName.getText().toString();
+
             if (name.isEmpty()) {
                 Toast.makeText(MainActivity.this, "Please enter your name", Toast.LENGTH_SHORT).show();
             } else {
                 Intent intent = new Intent(MainActivity.this, ResultActivity.class);
                 intent.putExtra("name", name);
+                intent.putExtra("fname", fname);
                 intent.putExtra("date", binding.btnPickDate.getText().toString());
                 if (selectedImageUri != null) {
                     intent.putExtra("image", selectedImageUri.toString());
@@ -98,6 +118,35 @@ public class MainActivity extends AppCompatActivity {
             binding.imageView.setImageURI(selectedImageUri);
         }
     }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.option_menu, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.exit) {
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("Exit")
+                    .setMessage("Are you sure you want to exit?")
+                    .setPositiveButton("Yes", (dialog, i) -> {
+                        this.finish();
+                        Toast.makeText(this, "Bye user", Toast.LENGTH_SHORT).show();
+                    })
+                    .setNegativeButton("No", (dialog, i) -> dialog.cancel());
+            AlertDialog dialog = builder.create();
+            dialog.show();
+            return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
     @Override
     public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {

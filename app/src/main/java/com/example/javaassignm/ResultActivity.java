@@ -22,6 +22,7 @@ public class ResultActivity extends AppCompatActivity {
         listView = findViewById(R.id.listView);
 
         String name = getIntent().getStringExtra("name");
+        String fname = getIntent().getStringExtra("fname");
         String date = getIntent().getStringExtra("date");
         String imageString = getIntent().getStringExtra("image");
 
@@ -31,7 +32,7 @@ public class ResultActivity extends AppCompatActivity {
         }
 
         formItemList = new ArrayList<>();
-        formItemList.add(new FormItem(name, date, imageUri));
+        formItemList.add(new FormItem(name,fname , date, imageUri));
 
         FormAdapter adapter = new FormAdapter(this, formItemList);
         listView.setAdapter(adapter);
