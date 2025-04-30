@@ -39,7 +39,7 @@ public class FormAdapter extends ArrayAdapter<FormItem> {
         FormItem item = formItemList.get(position);
 
         binding.tvName.setText(item.getName());
-        binding.tvFname.setText(item.getName());
+        binding.tvFname.setText(item.getFname());
         binding.tvDate.setText(item.getDate());
         binding.imageView.setImageURI(item.getImageUri());
 
