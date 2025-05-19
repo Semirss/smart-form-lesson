@@ -14,6 +14,8 @@ import android.view.View;
 import android.widget.CheckBox;
 import android.widget.Toast;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
@@ -34,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
     private ActionMode actionMode;
     private CheckBox checkboxEnglish, checkboxAmharic;
 
+    private ActivityResultLauncher<Intent> imagePickerLauncher;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -43,13 +47,26 @@ public class MainActivity extends AppCompatActivity {
         checkboxEnglish = findViewById(R.id.checkbox_english);
         checkboxAmharic = findViewById(R.id.checkbox_amharic);
 
-        // Load tempState if available (due to recreate)
-        if (tempState != null) {
-            restoreForm(tempState);
-            tempState = null; // Clear after use
+        // Restore from savedInstanceState (rotation)
+        if (savedInstanceState != null) {
+            binding.etname.setText(savedInstanceState.getString("name", ""));
+            binding.etFName.setText(savedInstanceState.getString("fname", ""));
+            binding.btnPickDate.setText(savedInstanceState.getString("date", getString(R.string.select_date)));
+
+            String imageUriString = savedInstanceState.getString("imageUri");
+            if (imageUriString != null) {
+                selectedImageUri = Uri.parse(imageUriString);
+                binding.imageView.setImageURI(selectedImageUri);
+            }
         }
 
-        // Set language checkboxes
+        // Restore from tempState (language switch)
+        if (tempState != null) {
+            restoreForm(tempState);
+            tempState = null;
+        }
+
+        // Language selection logic
         String currentLang = Locale.getDefault().getLanguage();
         checkboxEnglish.setChecked(currentLang.equals("en"));
         checkboxAmharic.setChecked(currentLang.equals("am"));
@@ -72,7 +89,19 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Long press on image for CAB
+        // Register ActivityResultLauncher
+        imagePickerLauncher = registerForActivityResult(
+                new ActivityResultContracts.StartActivityForResult(),
+                result -> {
+                    if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                        selectedImageUri = result.getData().getData();
+                        binding.imageView.setImageURI(selectedImageUri);
+                        Toast.makeText(this, "Image selected", Toast.LENGTH_SHORT).show();
+                    }
+                }
+        );
+
+        // Long press image to activate CAB
         binding.imageView.setOnLongClickListener(v -> {
             if (actionMode != null) return false;
             actionMode = startActionMode(actionModeCallback);
@@ -93,14 +122,14 @@ public class MainActivity extends AppCompatActivity {
             datePickerDialog.show();
         });
 
-        // Image Picker
+        // Image Picker (button)
         binding.btnPickImage.setOnClickListener(v -> {
             Intent intent = new Intent(Intent.ACTION_PICK);
             intent.setType("image/*");
-            startActivityForResult(intent, 1);
+            imagePickerLauncher.launch(intent);
         });
 
-        // Submit
+        // Submit Button
         binding.btnSubmit.setOnClickListener(v -> {
             String name = binding.etname.getText().toString();
             String fname = binding.etFName.getText().toString();
@@ -114,6 +143,7 @@ public class MainActivity extends AppCompatActivity {
             intent.putExtra("name", name);
             intent.putExtra("fname", fname);
             intent.putExtra("date", binding.btnPickDate.getText().toString());
+
             if (selectedImageUri != null) {
                 intent.putExtra("image", selectedImageUri.toString());
             }
@@ -154,7 +184,7 @@ public class MainActivity extends AppCompatActivity {
         getResources().updateConfiguration(config, getResources().getDisplayMetrics());
     }
 
-    // Contextual Action Mode
+    // Contextual Action Mode (CAB)
     private final ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
@@ -178,7 +208,7 @@ public class MainActivity extends AppCompatActivity {
             } else if (item.getItemId() == R.id.action_add_image) {
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*");
-                startActivityForResult(intent, 1);
+                imagePickerLauncher.launch(intent);
                 mode.finish();
                 return true;
             }
@@ -199,15 +229,6 @@ public class MainActivity extends AppCompatActivity {
         outState.putString("date", binding.btnPickDate.getText().toString());
         if (selectedImageUri != null) {
             outState.putString("imageUri", selectedImageUri.toString());
-        }
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1 && resultCode == Activity.RESULT_OK && data != null) {
-            selectedImageUri = data.getData();
-            binding.imageView.setImageURI(selectedImageUri);
         }
     }
 
