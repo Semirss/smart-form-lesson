@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">JavaAssignm</string>
+    <string name="app_name">SmartForm</string>
     <string name="pick_image">Pick Image</string>
     <string name="enter_name">Enter Name</string>
     <string name="father_name">Father Name</string>

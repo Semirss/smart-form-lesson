@@ -1,15 +1,15 @@
 <resources>
-    <string name="app_name">የቅጽ መተግበሪያ</string>
-    <string name="enter_name">ስም አስገባ</string>
-    <string name="father_name">የአባት ስም አስገባ</string>
-    <string name="select_date">ቀን ምረጥ</string>
-    <string name="pick_image">ምስል ምረጥ</string>
-    <string name="submit">አስገባ</string>
-    <string name="reset_form">ቅጽ ተሰርዟል</string>
-    <string name="please_fill_all_fields">እባክዎ ሁሉንም ቦታ ይሙሉ!</string>
-    <string name="delete">ሰርዝ</string>
-    <string name="edit">አስተካክል</string>
-    <string name="next">ቀጥሎ</string>
+    <string name="app_name">ፎርም መተግበሪያ</string>
+    <string name="enter_name">ስም እትዉ</string>
+    <string name="father_name">የአባት ስም ያስገቡ</string>
+    <string name="select_date">ቀን ይምረጡ</string>
+    <string name="pick_image">ምስል ይመርጡ</string>
+    <string name="submit">ላክ</string>
+    <string name="reset_form">ቅጹ ተዘስዷል</string>
+    <string name="please_fill_all_fields">ሁሉንም መስኮቶች እባክዎን ይሙሉ!</string>
+    <string name="delete">አጥፋ</string>
+    <string name="edit">ያስተካክሉ</string>
+    <string name="next">ቀጣይ</string>
 
 
 

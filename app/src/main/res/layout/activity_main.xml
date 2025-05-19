@@ -1,151 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity"
-    android:background="@drawable/back">
+    android:fillViewport="true">
 
-    <ToggleButton
-        android:id="@+id/toggle_button"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity"
+        android:background="@drawable/image6">
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="#66839D"
-        android:checked="false"
-        android:textColor="#FFFFFF"
-        android:textOff="English"
-        android:textOn="Amharic"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp">
+
+        <CheckBox
+            android:id="@+id/checkbox_english"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="English"
+            android:textColor="#000"
+            android:buttonTint="#000"
+            android:layout_marginEnd="16dp" />
+
+        <CheckBox
+            android:id="@+id/checkbox_amharic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Amharic"
+            android:textColor="#000"
+            android:buttonTint="#000" />
+
+    </LinearLayout>
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
         android:contentDescription="@string/pick_image"
-        android:src="@drawable/ic_launcher_foreground"
+        android:src="@drawable/image7"
+        android:background="@drawable/ppback"
+        android:clipToOutline="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnPickImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
-        android:backgroundTint="#0467A2"
-        android:text="@string/pick_image"
-        android:textColor="#FDF9FC"
-        android:textColorHint="#FFFFFF"
+    <!-- Name Input -->
+    <EditText
+        android:id="@+id/etname"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="16dp"
+        android:autofillHints="name"
+        android:background="@drawable/rounded_button"
+        android:hint="@string/enter_name"
+        android:inputType="text"
+        android:padding="12dp"
+        android:textColor="#ffff"
+        android:textColorHint="#7A7A7A"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <EditText
-        android:id="@+id/etname"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="56dp"
-        android:layout_marginEnd="16dp"
-        android:autofillHints="name"
-        android:hint="@string/enter_name"
-        android:inputType="text"
-        android:textColor="@color/black"
-        android:textColorHint="#020000"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPickImage" />
-
+    <!-- Father Name Input -->
     <EditText
         android:id="@+id/etFName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="0dp"
+        android:layout_height="48dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="16dp"
         android:layout_marginEnd="16dp"
         android:autofillHints="name"
+        android:background="@drawable/rounded_button"
         android:hint="@string/father_name"
         android:inputType="text"
-        android:textColor="@color/black"
-        android:textColorHint="#020000"
+        android:padding="12dp"
+        android:textColor="#ffff"
+        android:textColorHint="#7A7A7A"
+        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etname" />
 
-    <TextView
-        android:id="@+id/tvSelectedDate"
-        android:layout_width="140dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="5dp"
+    <!-- Pick Image Button (left) -->
+    <Button
+        android:id="@+id/btnPickImage"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
-        android:hint="@string/select_date"
-        android:padding="8dp"
-        android:textColor="#000000"
-        android:textColorHint="#000000"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/btnPickDate"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etFName" />
-
-    <Button
-        android:id="@+id/btnPickDate"
-        android:layout_width="220dp"
-        android:layout_height="50dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:backgroundTint="#0467A1"
-        android:text="@string/select_date"
+        android:paddingLeft="24dp"
+        android:paddingRight="24dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/pick_image"
+        android:textAllCaps="false"
         android:textColor="#FFFFFF"
-        android:textColorHint="#FFFFFF"
-        android:textColorLink="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/tvSelectedDate"
-        app:layout_constraintTop_toBottomOf="@+id/etFName" />
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/etFName"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btnSubmit"
+        app:layout_constraintWidth_percent="0.48" />
 
+    <!-- Submit Button (right) -->
     <Button
         android:id="@+id/btnSubmit"
-        android:layout_width="222dp"
-        android:layout_height="60dp"
-        android:layout_marginStart="94dp"
-        android:layout_marginEnd="95dp"
-        android:layout_marginBottom="80dp"
-        android:backgroundTint="#0467A0"
-        android:text="@string/submit"
-        android:textColor="#FFFFFF"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btnPickDate"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <Button
-        android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="150dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="225dp"
-        android:text="@string/next"
-        app:layout_constraintEnd_toStartOf="@+id/toggle_button"
+        android:background="@drawable/rounded_button"
+        android:text="@string/submit"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/etFName"
+        app:layout_constraintStart_toEndOf="@+id/btnPickImage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.48" />
+
+    <!-- Pick Date Button (below) -->
+    <Button
+        android:id="@+id/btnPickDate"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/rounded_button"
+        android:text="@string/select_date"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@+id/btnPickImage"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
