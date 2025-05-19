@@ -56,7 +56,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Name Input -->
     <EditText
         android:id="@+id/etname"
         android:layout_width="0dp"
@@ -76,7 +75,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
-    <!-- Father Name Input -->
     <EditText
         android:id="@+id/etFName"
         android:layout_width="0dp"
@@ -96,7 +94,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etname" />
 
-    <!-- Pick Image Button (left) -->
     <Button
         android:id="@+id/btnPickImage"
         android:layout_width="150dp"
@@ -115,7 +112,6 @@
         app:layout_constraintEnd_toStartOf="@+id/btnSubmit"
         app:layout_constraintWidth_percent="0.48" />
 
-    <!-- Submit Button (right) -->
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="150dp"
@@ -132,7 +128,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintWidth_percent="0.48" />
 
-    <!-- Pick Date Button (below) -->
     <Button
         android:id="@+id/btnPickDate"
         android:layout_width="150dp"
